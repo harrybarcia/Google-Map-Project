@@ -7,6 +7,7 @@ import List from './components/List/List';
 import Map from './components/Map/Map';
 
 const App = () => {
+  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
 
@@ -16,7 +17,6 @@ const App = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [places, setPlaces] = useState([]);
-
   const [autocomplete, setAutocomplete] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +42,7 @@ const App = () => {
 
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
+          console.log(data);
           setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
           setFilteredPlaces([]);
           setRating('');
